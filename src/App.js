@@ -1,13 +1,14 @@
 import axios from 'axios';
+import styled from 'styled-components';
+
 import { useEffect, useState } from 'react';
 
 function App() {
   const [posts, setPosts] = useState();
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts').then(data => {
-      console.log(data);
-      setPosts(data.data);
+    axios.get('https://jsonplaceholder.typicode.com/posts').then(res => {
+      setPosts(res.data);
       setLoading(false);
     });
   }, []);
@@ -20,10 +21,20 @@ function App() {
     <div className="App">
       {posts.map((el, idx) => {
         console.log(el);
-        return <div key={idx}>{el.title}</div>;
+        return (
+          <List key={idx}>
+            <div>{el.title}</div>
+            <div>작성자 {el.userId}</div>
+          </List>
+        );
       })}
     </div>
   );
 }
 
 export default App;
+
+const List = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
