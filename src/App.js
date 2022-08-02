@@ -1,6 +1,6 @@
 import axios from 'axios';
 import styled from 'styled-components';
-
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function App() {
