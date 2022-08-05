@@ -21,6 +21,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: auto;
+  margin-top: 30px;
 `;
 
 const HeaderImg = styled.img`

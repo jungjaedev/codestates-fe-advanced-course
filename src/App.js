@@ -24,7 +24,7 @@ function App() {
 }
 
 const Pages = styled.div`
-  padding: 40px;
+  padding: 20px 30px;
 `;
 
 export default App;
