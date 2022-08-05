@@ -25,18 +25,18 @@ function Posts() {
   }
 
   return (
-    <div>
+    <StyledDiv>
       {posts.map((el, idx) => {
         return (
           <List key={idx}>
-            <Link to={`/posts/${el.id}`} state={{ data: el }}>
+            <StyledLink to={`/posts/${el.id}`} state={{ data: el }}>
               {el.title}
-            </Link>
+            </StyledLink>
             <div>작성자 {el.userId}</div>
           </List>
         );
       })}
-    </div>
+    </StyledDiv>
   );
 }
 
@@ -45,6 +45,16 @@ export default Posts;
 const List = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px gray solid;
+  border-bottom: 2px #d1c7cd solid;
   padding: 10px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
+const StyledDiv = styled.div`
+  border-top: 3px #d1c7cd solid;
+  padding-top: 15px;
 `;
