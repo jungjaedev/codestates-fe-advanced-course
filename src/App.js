@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Posts from './pages/Posts';
+import Detail from './pages/Detail';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Pages>
           <Routes>
             <Route path="/posts" element={<Posts />} />
+            <Route path="/posts/:postId" element={<Detail />} />
           </Routes>
         </Pages>
       </div>

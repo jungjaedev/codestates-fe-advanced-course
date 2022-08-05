@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -9,10 +9,15 @@ function Posts() {
   const [posts, setPosts] = useState();
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts').then(res => {
-      setPosts(res.data);
-      setLoading(false);
-    });
+    axios
+      .get('https://jsonplaceholder.typicode.com/posts')
+      .then(res => {
+        setPosts(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
 
   if (isLoading) {
@@ -23,12 +28,12 @@ function Posts() {
     <div>
       {posts.map((el, idx) => {
         return (
-          <>
-            <List key={idx}>
-              <div>{el.title}</div>
-              <div>작성자 {el.userId}</div>
-            </List>
-          </>
+          <List key={idx}>
+            <Link to={`/posts/${el.id}`} state={{ data: el }}>
+              {el.title}
+            </Link>
+            <div>작성자 {el.userId}</div>
+          </List>
         );
       })}
     </div>
@@ -42,12 +47,4 @@ const List = styled.div`
   justify-content: space-between;
   border-bottom: 2px gray solid;
   padding: 10px;
-`;
-
-const Line = styled.div`
-  background: #cecece;
-  width: 300px;
-  height: 2px;
-  padding: 0;
-  margin: 0;
 `;
